@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="CSP Tools" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#0a1628" />
+  <title>Comitato Sanitario di Pordenone</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: #f0f2f5;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      color: #1a2a3a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ─── HEADER blu scuro ─── */
+    .app-header {
+      width: 100%;
+      background: #0a1628;
+      padding: 18px 20px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* Logo: cerchio bianco con croce rossa + simbolo medico */
+    .logo-wrap {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+    }
+
+    .logo-wrap svg {
+      width: 56px;
+      height: 56px;
+    }
+
+    .header-text {}
+
+    .header-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.01em;
+      line-height: 1.25;
+    }
+
+    .header-subtitle {
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.55);
+      margin-top: 2px;
+      letter-spacing: 0.01em;
+    }
+
+    /* Barra separatrice colorata sotto l'header */
+    .header-accent {
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #1a6fc4 0%, #2a9fd4 50%, #1a6fc4 100%);
+    }
+
+    /* ─── CORPO PAGINA ─── */
+    .page-body {
+      width: 100%;
+      max-width: 480px;
+      padding: 22px 16px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #8a99aa;
+      margin-bottom: 2px;
+      padding-left: 2px;
+    }
+
+    /* ─── APP CARD ─── */
+    .app-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #ffffff;
+      border: 1px solid #dde3eb;
+      border-radius: 14px;
+      padding: 16px 18px;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 1px 4px rgba(10,22,40,0.07);
+      transition: box-shadow 0.18s, border-color 0.18s, transform 0.1s;
+      position: relative;
+    }
+
+    .app-card:hover {
+      border-color: #1a6fc4;
+      box-shadow: 0 3px 12px rgba(26,111,196,0.14);
+    }
+
+    .app-card:active {
+      transform: scale(0.98);
+    }
+
+    /* Card principale evidenziata */
+    .app-card.featured {
+      border-color: #1a6fc4;
+      border-width: 1.5px;
+      background: #f5f9ff;
+    }
+
+    /* ─── ICONA BADGE ─── */
+    .icon-badge {
+      flex-shrink: 0;
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-badge svg {
+      width: 26px;
+      height: 26px;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon-badge.blue   { background: #e8f0fb; }
+    .icon-badge.blue svg { stroke: #1a6fc4; }
+
+    .icon-badge.teal   { background: #e4f5f0; }
+    .icon-badge.teal svg { stroke: #0d8a72; }
+
+    .icon-badge.indigo { background: #edeafc; }
+    .icon-badge.indigo svg { stroke: #4a35c8; }
+
+    /* ─── TESTO CARD ─── */
+    .card-body { flex: 1; min-width: 0; }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #0d1f33;
+      margin-bottom: 3px;
+    }
+
+    .card-desc {
+      font-size: 12.5px;
+      color: #6b7d90;
+      line-height: 1.45;
+    }
+
+    /* Badge "Principale" */
+    .badge-main {
+      position: absolute;
+      top: 11px;
+      right: 14px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #1a6fc4;
+      background: #dbeafe;
+      border-radius: 6px;
+      padding: 2px 7px;
+    }
+
+    /* Freccia */
+    .chevron {
+      flex-shrink: 0;
+      opacity: 0.3;
+    }
+    .chevron svg {
+      width: 18px;
+      height: 18px;
+      stroke: #0d1f33;
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      margin-top: auto;
+      padding: 12px 20px 28px;
+      text-align: center;
+      font-size: 11px;
+      color: #a0aab4;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER BLU SCURO CON LOGO -->
+  <header class="app-header">
+    <div class="header-row">
+      <!-- Logo SVG: scudo sanitario con croce -->
+      <div class="logo-wrap">
+        <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+          <!-- Cerchio esterno -->
+          <circle cx="28" cy="28" r="26" fill="white" opacity="0.12"/>
+          <circle cx="28" cy="28" r="26" fill="none" stroke="white" stroke-width="1.5" opacity="0.4"/>
+          <!-- Sfondo cerchio logo -->
+          <circle cx="28" cy="28" r="23" fill="white"/>
+          <!-- Croce rossa medica -->
+          <rect x="22.5" y="15" width="11" height="26" rx="3" fill="#c0392b"/>
+          <rect x="15" y="22.5" width="26" height="11" rx="3" fill="#c0392b"/>
+          <!-- Lettera C piccola in alto a sinistra (Comitato) -->
+          <circle cx="28" cy="28" r="7" fill="white"/>
+          <!-- Punto centrale -->
+          <circle cx="28" cy="28" r="2.5" fill="#c0392b"/>
+        </svg>
+      </div>
+      <div class="header-text">
+        <p class="header-title">Comitato Sanitario<br>di Pordenone</p>
+        <p class="header-subtitle">Portale strumenti interni</p>
+      </div>
+    </div>
+  </header>
+  <div class="header-accent"></div>
+
+  <!-- CORPO PAGINA CHIARO -->
+  <div class="page-body">
+    <p class="section-label">Applicazioni disponibili</p>
+
+    <!-- Card 1: Archivio -->
+    <a class="app-card" href="https://caspn.github.io/Inventario/" target="_blank" rel="noopener">
+      <div class="icon-badge blue">
+        <svg viewBox="0 0 24 24">
+          <rect x="2" y="3" width="20" height="5" rx="1.5"/>
+          <rect x="2" y="10" width="20" height="5" rx="1.5"/>
+          <rect x="2" y="17" width="20" height="4" rx="1.5"/>
+          <line x1="6" y1="5.5" x2="6" y2="5.5" stroke-width="2"/>
+          <line x1="6" y1="12.5" x2="6" y2="12.5" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <p class="card-title">Archivio</p>
+        <p class="card-desc">Gestione inventario e materiali</p>
+      </div>
+      <div class="chevron">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </a>
+
+    <!-- Card 2: Registro Incontri -->
+    <a class="app-card" href="https://caspn.github.io/Meeting/" target="_blank" rel="noopener">
+      <div class="icon-badge teal">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+          <line x1="8" y1="14" x2="8.01" y2="14" stroke-width="2.5"/>
+          <line x1="12" y1="14" x2="12.01" y2="14" stroke-width="2.5"/>
+          <line x1="16" y1="14" x2="16.01" y2="14" stroke-width="2.5"/>
+          <line x1="8" y1="18" x2="8.01" y2="18" stroke-width="2.5"/>
+          <line x1="12" y1="18" x2="12.01" y2="18" stroke-width="2.5"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <p class="card-title">Registro Incontri</p>
+        <p class="card-desc">Storico degli incontri con i medici</p>
+      </div>
+      <div class="chevron">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </a>
+
+    <!-- Card 3: Elenco Medici (principale) -->
+    <a class="app-card featured" href="https://caspn.github.io/Medical-Search-App/" target="_blank" rel="noopener">
+      <span class="badge-main">Principale</span>
+      <div class="icon-badge indigo">
+        <svg viewBox="0 0 24 24">
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
+          <line x1="19" y1="8" x2="19" y2="14"/>
+          <line x1="16" y1="11" x2="22" y2="11"/>
+        </svg>
+      </div>
+      <div class="card-body">
+        <p class="card-title">Elenco Medici</p>
+        <p class="card-desc">Medici e specialisti che collaborano con il Comitato</p>
+      </div>
+      <div class="chevron">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="footer">
+    Comitato Sanitario di Pordenone &mdash; Uso interno<br>Accesso riservato al personale autorizzato
+  </div>
+
+</body>
+</html>
