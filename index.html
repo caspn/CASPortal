@@ -93,22 +93,33 @@ body{
   transform:scale(1.03);
 }
 
-/* ══ MOBILE — colonna singola ══ */
+/* ══ MOBILE — colonna singola, tutti visibili senza scroll ══ */
 @media(max-width:600px){
-  .page-body{padding:28px 20px 56px;}
+  .page-body{
+    padding:0;
+    height:calc(100dvh - 56px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
   .app-grid{
     grid-template-columns:1fr;
-    gap:16px;
-    max-width:320px;
-    margin:0 auto;
+    gap:10px;
+    width:100%;
+    max-width:280px;
+    padding:12px 20px;
+  }
+  .app-card{
+    aspect-ratio:1/1;
+    width:100%;
   }
   .app-card.center{
     transform:none;
     filter:none;
   }
   .app-card.center:hover{
-    transform:translateY(-5px) scale(1.03);
-    filter:drop-shadow(0 12px 22px rgba(0,0,0,.40));
+    transform:translateY(-3px) scale(1.02);
+    filter:drop-shadow(0 8px 16px rgba(0,0,0,.35));
   }
 }
 
