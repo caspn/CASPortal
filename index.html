@@ -1,211 +1,130 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="CSP Portale" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="theme-color" content="#015b99" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png" />
-  <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
-  <title>Comitato Sanitario di Pordenone</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="CSP Portale"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="theme-color" content="#015b99"/>
+<link rel="manifest" href="manifest.json"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<title>Comitato Sanitario di Pordenone</title>
+<style>
+:root{
+  --navy:#015b99;--navy2:#014a80;
+  --g50:#f8fafc;--g100:#f1f5f9;--g200:#e2e8f0;--g300:#cbd5e1;--g400:#94a3b8;--g500:#64748b;--g700:#334155;
+  --sh:0 4px 16px rgba(10,22,40,.10);
+  --r:14px;--rs:9px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Outfit',sans-serif;background:linear-gradient(to bottom,#015b99 0%,#015b99 8%,#1a7ab8 22%,#d0e8f5 45%,#ffffff 70%);background-attachment:fixed;color:var(--navy);min-height:100vh;line-height:1.5}
 
-    :root {
-      --navy: #015b99;
-      --navy2: #014a80;
-      --g50:  #f8fafc;
-      --g100: #f1f5f9;
-      --g200: #e2e8f0;
-      --g300: #cbd5e1;
-      --g400: #94a3b8;
-      --g500: #64748b;
-      --g700: #334155;
-      --r: 12px;
-      --rs: 8px;
-      --sh: 0 1px 4px rgba(10,22,40,.08);
-    }
+/* ══ HEADER — copiato esattamente dall'originale ══ */
+.hdr{background:#015b99;padding:0 24px;height:64px;
+  display:flex;align-items:center;justify-content:center;position:sticky;top:0;z-index:300}
+.hdr-inner{display:flex;align-items:center;gap:16px;width:100%;max-width:80%;}
+.hdr-logo{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.logo-icon{width:44px;height:44px;border-radius:10px;background:#fff;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:4px;box-shadow:0 1px 6px rgba(0,0,0,.18)}
+.logo-txt{display:flex;flex-direction:column;justify-content:center}
+.logo-txt b{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;display:block;line-height:1.25}
+.logo-txt small{font-size:.58rem;color:rgba(255,255,255,.45);letter-spacing:1.8px;text-transform:uppercase}
+.hdr-ttl{color:rgba(255,255,255,.38);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;margin-left:auto;font-weight:400}
+@media(max-width:560px){
+  .hdr{padding:0 13px;height:56px}
+  .hdr-inner{max-width:100%}
+  .logo-txt b{font-size:.9rem}.hdr-ttl{display:none}
+}
 
-    body {
-      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #015b99 0%, #015b99 8%, #1a7ab8 22%, #d0e8f5 45%, #ffffff 70%);
-      background-attachment: fixed;
-      color: var(--navy);
-      min-height: 100vh;
-      line-height: 1.5;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+/* ══ CORPO ══ */
+.page-body{
+  width:100%;max-width:540px;margin:0 auto;
+  padding:36px 16px 56px;
+  display:flex;flex-direction:column;gap:14px;
+}
+.section-label{
+  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.65);padding-left:2px;margin-bottom:-2px;
+}
 
-    .hdr{background:#015b99;padding:0 24px;height:64px;
-      display:flex;align-items:center;justify-content:center;position:sticky;top:0;z-index:300}
-    .hdr-inner{display:flex;align-items:center;gap:16px;width:100%;max-width:80%;}
-    .hdr-logo{display:flex;align-items:center;gap:11px;flex-shrink:0}
-    .logo-icon{width:44px;height:44px;border-radius:10px;background:#fff;
-      display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:4px;box-shadow:0 1px 6px rgba(0,0,0,.18)}
-    .logo-txt{display:flex;flex-direction:column;justify-content:center}
-    .logo-txt b{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;display:block;line-height:1.25}
-    .logo-txt small{font-size:.58rem;color:rgba(255,255,255,.45);letter-spacing:1.8px;text-transform:uppercase}
-    .hdr-ttl{color:rgba(255,255,255,.38);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;margin-left:auto;font-weight:400}
-    @media(max-width:560px){
-      .hdr{padding:0 13px;height:56px}
-      .hdr-inner{max-width:100%}
-      .logo-txt b{font-size:.9rem}.hdr-ttl{display:none}
-    }
-      .hdr-inner{max-width:100%}
-      .logo-txt b{font-size:.9rem}.hdr-ttl{display:none}
-    }
-      .hdr-inner { max-width: 100%; }
-      .logo-txt b { font-size: .9rem; }
-      .hdr-ttl { display: none; }
-    }
-      .hdr-inner { max-width: 100%; }
-      .logo-txt b { font-size: .9rem; }
-      .hdr-ttl { display: none; }
-    }
+/* ══ APP CARD ══ */
+.app-card{
+  display:flex;align-items:center;gap:14px;
+  background:#fff;border:1px solid var(--g200);border-radius:var(--r);
+  padding:18px 20px;text-decoration:none;color:inherit;
+  box-shadow:0 2px 8px rgba(10,22,40,.09);
+  transition:box-shadow .18s,border-color .18s,transform .1s;
+  position:relative;
+}
+.app-card:hover{border-color:var(--navy);box-shadow:0 4px 16px rgba(1,91,153,.18);}
+.app-card:active{transform:scale(0.985);}
+.app-card.featured{border:1.5px solid var(--navy);background:#f0f7ff;}
 
-    /* ══ INSTALL BANNERS ══ */
-    .install-banner {
-      display: none;
-      position: fixed;
-      bottom: 20px; left: 16px; right: 16px;
-      background: #1c3a58;
-      border: 1px solid rgba(1,91,153,0.5);
-      border-radius: 16px;
-      padding: 14px 16px;
-      z-index: 888;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.35);
-    }
-    .banner-row { display: flex; align-items: center; gap: 12px; }
-    .banner-row img { width:40px; height:40px; border-radius:10px; flex-shrink:0; }
-    .banner-text { flex:1; }
-    .banner-title { font-size:13px; font-weight:700; color:#fff; }
-    .banner-desc { font-size:11.5px; color:rgba(255,255,255,0.55); margin-top:2px; line-height:1.4; }
-    .banner-close { background:none; border:none; color:rgba(255,255,255,0.4); font-size:20px; cursor:pointer; padding:4px; line-height:1; }
-    .share-icon { display:inline-block; width:15px; height:15px; vertical-align:-3px; }
-    .btn-install {
-      margin-top:12px; width:100%;
-      background: var(--navy); border:none; border-radius:9px;
-      padding:11px; font-size:14px; font-weight:600; color:#fff;
-      cursor:pointer; transition:background .15s;
-    }
-    .btn-install:hover { background: var(--navy2); }
+.icon-badge{
+  flex-shrink:0;width:52px;height:52px;border-radius:13px;
+  display:flex;align-items:center;justify-content:center;
+}
+.icon-badge svg{width:27px;height:27px;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.icon-badge.blue{background:#dbeeff;}.icon-badge.blue svg{stroke:var(--navy);}
+.icon-badge.teal{background:#e4f5f0;}.icon-badge.teal svg{stroke:#0d8a72;}
+.icon-badge.indigo{background:#edeafc;}.icon-badge.indigo svg{stroke:#4a35c8;}
 
-    /* ══ CORPO ══ */
-    .page-body {
-      width: 100%;
-      max-width: 520px;
-      padding: 32px 16px 48px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .section-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.65);
-      padding-left: 2px;
-      margin-bottom: -4px;
-    }
+.card-body{flex:1;min-width:0;}
+.card-title{font-size:15px;font-weight:700;color:var(--g700);margin-bottom:3px;}
+.card-desc{font-size:12.5px;color:var(--g400);line-height:1.45;}
 
-    /* ══ APP CARD ══ */
-    .app-card {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: #fff;
-      border: 1px solid var(--g200);
-      border-radius: var(--r);
-      padding: 18px 20px;
-      text-decoration: none;
-      color: inherit;
-      box-shadow: 0 2px 8px rgba(10,22,40,0.10);
-      transition: box-shadow 0.18s, border-color 0.18s, transform 0.1s;
-      position: relative;
-    }
-    .app-card:hover {
-      border-color: var(--navy);
-      box-shadow: 0 4px 16px rgba(1,91,153,0.18);
-    }
-    .app-card:active { transform: scale(0.98); }
-    .app-card.featured {
-      border: 1.5px solid var(--navy);
-      background: #f0f7ff;
-    }
+.badge-main{
+  position:absolute;top:12px;right:14px;
+  font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--navy);background:#dbeeff;border-radius:6px;padding:2px 7px;
+}
+.chevron{flex-shrink:0;opacity:.3;}
+.chevron svg{width:18px;height:18px;stroke:var(--g700);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
 
-    .icon-badge {
-      flex-shrink: 0;
-      width: 52px; height: 52px;
-      border-radius: 13px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .icon-badge svg {
-      width: 27px; height: 27px;
-      fill: none; stroke-width: 1.8;
-      stroke-linecap: round; stroke-linejoin: round;
-    }
-    .icon-badge.blue   { background: #dbeeff; } .icon-badge.blue svg   { stroke: var(--navy); }
-    .icon-badge.teal   { background: #e4f5f0; } .icon-badge.teal svg   { stroke: #0d8a72; }
-    .icon-badge.indigo { background: #edeafc; } .icon-badge.indigo svg { stroke: #4a35c8; }
+.footer{
+  padding:8px 20px 32px;text-align:center;
+  font-size:11px;color:var(--g400);line-height:1.7;
+}
 
-    .card-body  { flex: 1; min-width: 0; }
-    .card-title { font-size: 15px; font-weight: 700; color: var(--g700); margin-bottom: 3px; }
-    .card-desc  { font-size: 12.5px; color: var(--g400); line-height: 1.45; }
-
-    .badge-main {
-      position: absolute; top: 12px; right: 14px;
-      font-size: 10px; font-weight: 700;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--navy); background: #dbeeff;
-      border-radius: 6px; padding: 2px 7px;
-    }
-    .chevron { flex-shrink: 0; opacity: 0.3; }
-    .chevron svg {
-      width: 18px; height: 18px;
-      stroke: var(--g700); fill: none;
-      stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round;
-    }
-
-    .footer {
-      padding: 8px 20px 32px;
-      text-align: center;
-      font-size: 11px; color: var(--g400); line-height: 1.7;
-    } /* gestito da JS */
-      .install-banner.show { display: block !important; }
-    }
-  
-    /* Install banners: solo mobile */
-    .install-banner { display: none !important; }
-    @media (max-width: 768px) {
-      .install-banner.show { display: block !important; }
-    }
-  </style>
+/* ══ BANNER INSTALL — solo mobile ══ */
+.install-banner{display:none;}
+@media(max-width:768px){
+  .install-banner{
+    position:fixed;bottom:20px;left:16px;right:16px;
+    background:#1c3a58;border:1px solid rgba(1,91,153,.5);
+    border-radius:16px;padding:14px 16px;z-index:888;
+    box-shadow:0 4px 20px rgba(0,0,0,.35);
+  }
+  .install-banner.show{display:block;}
+}
+.banner-row{display:flex;align-items:center;gap:12px;}
+.banner-row img{width:40px;height:40px;border-radius:10px;flex-shrink:0;}
+.banner-text{flex:1;}
+.banner-title{font-size:13px;font-weight:700;color:#fff;}
+.banner-desc{font-size:11.5px;color:rgba(255,255,255,.55);margin-top:2px;line-height:1.4;}
+.banner-close{background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;padding:4px;line-height:1;}
+.share-icon{display:inline-block;width:15px;height:15px;vertical-align:-3px;}
+.btn-install{
+  margin-top:12px;width:100%;background:var(--navy);border:none;border-radius:9px;
+  padding:11px;font-size:14px;font-weight:600;color:#fff;cursor:pointer;transition:background .15s;
+}
+.btn-install:hover{background:var(--navy2);}
+</style>
 </head>
 <body>
 
-<!-- ══ iOS BANNER ══ -->
+<!-- ══ BANNER iOS ══ -->
 <div class="install-banner" id="ios-banner">
   <div class="banner-row">
-    <img src="icons/icon-192.png" alt="CSP" />
+    <img src="icons/icon-192.png" alt="CSP"/>
     <div class="banner-text">
       <p class="banner-title">Installa CSP Portale</p>
       <p class="banner-desc">Tocca
         <svg class="share-icon" viewBox="0 0 24 24" fill="none" stroke="#4ea0ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-          <polyline points="16 6 12 2 8 6"/>
-          <line x1="12" y1="2" x2="12" y2="15"/>
+          <polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/>
         </svg>
         poi &ldquo;Aggiungi a schermata Home&rdquo;
       </p>
@@ -214,10 +133,10 @@
   </div>
 </div>
 
-<!-- ══ ANDROID BANNER ══ -->
+<!-- ══ BANNER Android ══ -->
 <div class="install-banner" id="android-banner">
   <div class="banner-row">
-    <img src="icons/icon-192.png" alt="CSP" />
+    <img src="icons/icon-192.png" alt="CSP"/>
     <div class="banner-text">
       <p class="banner-title">Installa CSP Portale</p>
       <p class="banner-desc">Aggiungi l&rsquo;app alla tua schermata Home</p>
@@ -227,7 +146,7 @@
   <button class="btn-install" id="android-install">Installa app</button>
 </div>
 
-<!-- ══ HEADER ══ -->
+<!-- ══ HEADER — identico all'originale ══ -->
 <header class="hdr">
   <div class="hdr-inner">
   <div class="hdr-logo">
@@ -303,34 +222,37 @@
 </div>
 
 <script>
-(function() {
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+(function(){
+  if('serviceWorker' in navigator){
+    window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
   }
-  let deferredPrompt = null;
-  window.addEventListener('beforeinstallprompt', e => {
-    e.preventDefault();
-    deferredPrompt = e;
-    if (!localStorage.getItem('_cspAndroidDismissed'))
-      if(window.innerWidth <= 768) document.getElementById('android-banner').classList.add('show');
+
+  // Android
+  let deferredPrompt=null;
+  window.addEventListener('beforeinstallprompt',e=>{
+    e.preventDefault();deferredPrompt=e;
+    if(!localStorage.getItem('_cspAndroidDismissed'))
+      document.getElementById('android-banner').classList.add('show');
   });
-  document.getElementById('android-install').addEventListener('click', async () => {
-    if (!deferredPrompt) return;
+  document.getElementById('android-install').addEventListener('click',async()=>{
+    if(!deferredPrompt)return;
     deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    deferredPrompt = null;
+    const{outcome}=await deferredPrompt.userChoice;
+    deferredPrompt=null;
     document.getElementById('android-banner').classList.remove('show');
-    if (outcome === 'dismissed') localStorage.setItem('_cspAndroidDismissed','1');
+    if(outcome==='dismissed')localStorage.setItem('_cspAndroidDismissed','1');
   });
-  document.getElementById('android-close').addEventListener('click', () => {
+  document.getElementById('android-close').addEventListener('click',()=>{
     document.getElementById('android-banner').classList.remove('show');
     localStorage.setItem('_cspAndroidDismissed','1');
   });
-  const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
-  const isStandalone = window.navigator.standalone === true;
-  if (isIos && !isStandalone && !localStorage.getItem('_cspIosDismissed'))
-    if(window.innerWidth <= 768) document.getElementById('ios-banner').classList.add('show');
-  document.getElementById('ios-close').addEventListener('click', () => {
+
+  // iOS
+  const isIos=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isStandalone=window.navigator.standalone===true;
+  if(isIos&&!isStandalone&&!localStorage.getItem('_cspIosDismissed'))
+    document.getElementById('ios-banner').classList.add('show');
+  document.getElementById('ios-close').addEventListener('click',()=>{
     document.getElementById('ios-banner').classList.remove('show');
     localStorage.setItem('_cspIosDismissed','1');
   });
