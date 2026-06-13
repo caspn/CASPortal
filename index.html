@@ -106,7 +106,8 @@ body{
     grid-template-columns:1fr;
     gap:10px;
     width:100%;
-    max-width:280px;
+    max-width:min(280px, 80dvh / 3);
+    height:calc(80dvh);
     padding:12px 20px;
   }
   .app-card{
